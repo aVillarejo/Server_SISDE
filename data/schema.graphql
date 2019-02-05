@@ -1,3 +1,4 @@
+# USUARIOS
 type Usuario {
   id: ID
   nombre: String
@@ -22,6 +23,7 @@ input UsuarioInput {
   status: Boolean!
 }
 
+# GIRO
 type Giro {
   id: ID
   nombre: String!
@@ -33,6 +35,142 @@ input GiroInput {
   nombre: String!
   descripcion: String!
 }
+
+# Forma Juridica
+type FormaJuridica {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+input FormaJuridicaInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+# Grado
+type Grado {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+input GradoInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+# AmbitoEstatal
+type AmbitoEstatal {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+input AmbitoEstatalInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+# Impuestos
+type Impuestos {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+input ImpuestosInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+# Contabilidad
+type Contabilidad {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+input ContabilidadInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+# Tendencias
+type Tendencias {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+input TendenciasInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+# Comercializacion
+type Comercializacion {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+input ComercializacionInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+# Departamentos
+type Departamentos {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+input DepartamentosInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+# Empresa
+# type Empresa {
+#   id: ID
+#   nombre: String
+#   RFC: String
+#   tipoEmpresa: String
+#   tiempoOperacion: String
+#   Persona: String # física o moral
+#   regimenFiscal: String
+#   marca: String
+#   licenciaAyuntamiento: String
+#   sectorEconomico: String
+#   giro: String
+#   formaJuridica: String
+#   gradoParticipacion: String
+#   ambitoEstatal: String
+#   ClasificacionEmpresa: String
+#   impuestos: Float
+#   tipoContabilidad: String
+#   capital: Float
+#   tendenciaFinancieras: String
+#   tipoComercializacion: String
+#   departamentos: String
+# }
+# input EmpresaInput {
+#   id: ID
+# }
+
+# str
+# type str {
+#   id: ID
+#   nombre: String!
+#   descripcion: String!
+# }
+# input strInput {
+#   id: ID
+#   nombre: String!
+#   descripcion: String!
+# }
 
 type Query {
   # Usuarios
@@ -52,7 +190,52 @@ type Mutation {
   eliminarUsuario(id: ID!): String
 
   # Giros
-  nuevoGiro(input: GiroInput): Giro
+  crearGiro(input: GiroInput): Giro
   actualizarGiro(input: GiroInput): Giro
   eliminarGiro(id: ID!): String
+
+  # FormaJuridica
+  crearFormaJuridica(input: FormaJuridicaInput): Giro
+  actualizarFormaJuridica(input: FormaJuridicaInput): Giro
+  eliminarFormaJuridica(id: ID!): String
+
+  # Grado
+  crearGrado(input: GradoInput): Giro
+  actualizarGrado(input: GradoInput): Giro
+  eliminarGrado(id: ID!): String
+
+  # AmbitoEstatal
+  crearAmbitoEstatal(input: AmbitoEstatalInput): Giro
+  actualizarAmbitoEstatal(input: AmbitoEstatalInput): Giro
+  eliminarAmbitoEstatal(id: ID!): String
+
+  # Impuestos
+  crearImpuestos(input: ImpuestosInput): Giro
+  actualizarImpuestos(input: ImpuestosInput): Giro
+  eliminarImpuestos(id: ID!): String
+
+  # Contabilidad
+  crearContabilidad(input: ContabilidadInput): Giro
+  actualizarContabilidad(input: ContabilidadInput): Giro
+  eliminarContabilidad(id: ID!): String
+
+  # Tendencias
+  crearTendencias(input: TendenciasInput): Giro
+  actualizarTendencias(input: TendenciasInput): Giro
+  eliminarTendencias(id: ID!): String
+
+  # Comercializacion
+  crearComercializacion(input: ComercializacionInput): Giro
+  actualizarComercializacion(input: ComercializacionInput): Giro
+  eliminarComercializacion(id: ID!): String
+
+  # Departamentos
+  crearDepartamentos(input: DepartamentosInput): Giro
+  actualizarDepartamentos(input: DepartamentosInput): Giro
+  eliminarDepartamentos(id: ID!): String
+
+  # stm
+  # crearstm(input: stmInput): Giro
+  # actualizarstm(input: stmInput): Giro
+  # eliminarstm(id: ID!): String
 }

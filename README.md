@@ -9,7 +9,7 @@
 - usuario
 - password
 
-### [ ] 5.2. Catalogo “Registro de Usuarios” (CRUD)
+### [x] 5.2. Catalogo “Registro de Usuarios” (CRUD)
 
 - nombre
 - usuario
@@ -17,47 +17,47 @@
 - tipo
 - status
 
-### [ ] 5.3. Catálogo  de Giro (CRUD)
+### [x] 5.3. Catálogo de Giro (CRUD)
 
 - nombre
 - descripcion
 
-### [ ] 5.4. Catalogo Jurídica (CRUD)
+### [x] 5.4. Catalogo Formas Jurídicas (CRUD)
 
 - nombre
 - descripcion
 
-### [ ] 5.5. Catálogo de Grado (CRUD)
+### [x] 5.5. Catálogo de Grado (CRUD)
 
 - nombre
 - descripcion
 
-### [ ] 5.6. Catálogo de Ámbito Estatal (CRUD)
+### [x] 5.6. Catálogo de Ámbito Estatal (CRUD)
 
 - nombre
 - descripcion
 
-### [ ] 5.7. Catalogo Impuestos (CRUD)
+### [x] 5.7. Catalogo Impuestos (CRUD)
 
 - nombre
 - descripcion
 
-### [ ] 5.8. Catalogo Contabilidad (CRUD)
+### [x] 5.8. Catalogo Contabilidad (CRUD)
 
 - nombre
 - descripcion
 
-### [ ] 5.9. Catalogo Tendencias (financieras) (CRUD)
+### [x] 5.9. Catalogo Tendencias (financieras) (CRUD)
 
 - nombre
 - descripcion
 
-### [ ] 5.10. Catalogo Tipo de comercialización (CRUD)
+### [x] 5.10. Catalogo Tipo de comercialización (CRUD)
 
 - nombre
 - descripcion
 
-### [ ] 5.11. Catalogo Departamentos (CRUD)
+### [x] 5.11. Catalogo Departamentos (CRUD)
 
 - nombre
 - descripcion
