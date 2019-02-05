@@ -1,0 +1,58 @@
+type Usuario {
+  id: ID
+  nombre: String
+  usuario: String
+  password: String
+  tipo: TipoUsuario
+  status: Boolean
+}
+
+enum TipoUsuario {
+  ALUMNO
+  CONSULTOR
+  ADMINISTRADOR
+}
+
+input UsuarioInput {
+  id: ID
+  nombre: String!
+  usuario: String!
+  password: String!
+  tipo: TipoUsuario!
+  status: Boolean!
+}
+
+type Giro {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+input GiroInput {
+  id: ID
+  nombre: String!
+  descripcion: String!
+}
+
+type Query {
+  # Usuarios
+  getUsuarios(limite: Int, offset: Int): [Usuario]
+  getUsuario(id: ID!): Usuario
+  totalUsuarios: String
+  # Giros
+  getGiros(limite: Int, offset: Int): [Giro]
+  getGiro(id: ID!): Giro
+  totalGiros: String
+}
+
+type Mutation {
+  # Usuarios
+  crearUsuario(input: UsuarioInput): Usuario
+  actualizarUsuario(input: UsuarioInput): Usuario
+  eliminarUsuario(id: ID!): String
+
+  # Giros
+  nuevoGiro(input: GiroInput): Giro
+  actualizarGiro(input: GiroInput): Giro
+  eliminarGiro(id: ID!): String
+}
