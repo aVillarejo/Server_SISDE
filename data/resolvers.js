@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Usuarios, Giros } from "./db";
+import { Usuarios, Giros, FormaJuridicas, Grados } from "./db";
 import { rejects } from "assert";
 
 export const resolvers = {
@@ -27,14 +27,12 @@ export const resolvers = {
       });
     },
 
-    //Giros
-
+    //FormaJuridicas
     getGiros: (root, { limite, offset }) => {
       return Giros.find({})
         .limit(limite)
         .skip(offset);
     },
-
     getGiro: (root, { id }) => {
       return new Promise((resolve, object) => {
         Giros.findById({ _id: id }, (error, producto) => {
@@ -43,7 +41,6 @@ export const resolvers = {
         });
       });
     },
-
     totalGiros: root => {
       return new Promise((resolve, object) => {
         Giros.countDocuments({}, (error, count) => {
@@ -51,6 +48,34 @@ export const resolvers = {
           else resolve(count);
         });
       });
+    },
+
+    //FormaJuridicas
+    getFormaJuridicas: (root, { limite, offset }) => {
+      return FormaJuridicas.find({})
+        .limit(limite)
+        .skip(offset);
+    },
+    getFormaJuridica: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        FormaJuridicas.findById({ _id: id }, (error, producto) => {
+          if (error) rejects(error);
+          else resolve(producto);
+        });
+      });
+    },
+    totalFormaJuridicas: root => {
+      return new Promise((resolve, object) => {
+        FormaJuridicas.countDocuments({}, (error, count) => {
+          if (error) rejects(error);
+          else resolve(count);
+        });
+      });
+    },
+
+    // Grados
+    getGrados: (root, { limite, offset }) => {
+      return Grados.find({});
     }
   },
   Mutation: {
@@ -73,7 +98,6 @@ export const resolvers = {
         });
       });
     },
-
     actualizarUsuario: (root, { input }) => {
       return new Promise((resolve, object) => {
         Usuarios.findOneAndUpdate(
@@ -87,7 +111,6 @@ export const resolvers = {
         );
       });
     },
-
     eliminarUsuario: (root, { id }) => {
       return new Promise((resolve, object) => {
         Usuarios.findOneAndDelete({ _id: id }, error => {
@@ -97,13 +120,11 @@ export const resolvers = {
       });
     },
 
-    //Mutations de Usuarios
-
-    nuevoGiro: (root, { input }) => {
+    //Mutations de Giros
+    crearGiro: (root, { input }) => {
       const nuevoGiro = new Giros({
         nombre: input.nombre,
-        precio: input.precio,
-        stock: input.stock
+        descripcion: input.descripcion
       });
       nuevoGiro.id = nuevoGiro._id;
 
@@ -114,7 +135,6 @@ export const resolvers = {
         });
       });
     },
-
     actualizarGiro: (root, { input }) => {
       return new Promise((resolve, object) => {
         Giros.findOneAndUpdate(
@@ -128,7 +148,6 @@ export const resolvers = {
         );
       });
     },
-
     eliminarGiro: (root, { id }) => {
       return new Promise((resolve, object) => {
         Giros.findOneAndDelete({ _id: id }, error => {
@@ -136,6 +155,339 @@ export const resolvers = {
           else resolve("Registro eliminado correctamente");
         });
       });
+    },
+
+    //Mutations de FormaJuridicas
+    crearFormaJuridica: (root, { input }) => {
+      const nuevoFormaJuridica = new FormaJuridicas({
+        nombre: input.nombre,
+        descripcion: input.descripcion
+      });
+      nuevoFormaJuridica.id = nuevoFormaJuridica._id;
+
+      return new Promise((resolve, object) => {
+        nuevoFormaJuridica.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoFormaJuridica);
+        });
+      });
+    },
+    actualizarFormaJuridica: (root, { input }) => {
+      return new Promise((resolve, object) => {
+        FormaJuridicas.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (error, producto) => {
+            if (error) rejects(error);
+            else resolve(producto);
+          }
+        );
+      });
+    },
+    eliminarFormaJuridica: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        FormaJuridicas.findOneAndDelete({ _id: id }, error => {
+          if (error) rejects(error);
+          else resolve("Registro eliminado correctamente");
+        });
+      });
+    },
+
+    //Mutations de Grados
+    crearGrado: (root, { input }) => {
+      const nuevoGrado = new Grados({
+        nombre: input.nombre,
+        descripcion: input.descripcion
+      });
+      nuevoGrado.id = nuevoGrado._id;
+
+      return new Promise((resolve, object) => {
+        nuevoGrado.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoGrado);
+        });
+      });
+    },
+    actualizarGrado: (root, { input }) => {
+      return new Promise((resolve, object) => {
+        Grados.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (error, producto) => {
+            if (error) rejects(error);
+            else resolve(producto);
+          }
+        );
+      });
+    },
+    eliminarGrado: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Grados.findOneAndDelete({ _id: id }, error => {
+          if (error) rejects(error);
+          else resolve("Registro eliminado correctamente");
+        });
+      });
+    },
+
+    //Mutations de AmbitoEstatals
+    crearAmbitoEstatal: (root, { input }) => {
+      const nuevoAmbitoEstatal = new AmbitoEstatals({
+        nombre: input.nombre,
+        descripcion: input.descripcion
+      });
+      nuevoAmbitoEstatal.id = nuevoAmbitoEstatal._id;
+
+      return new Promise((resolve, object) => {
+        nuevoAmbitoEstatal.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoAmbitoEstatal);
+        });
+      });
+    },
+    actualizarAmbitoEstatal: (root, { input }) => {
+      return new Promise((resolve, object) => {
+        AmbitoEstatals.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (error, producto) => {
+            if (error) rejects(error);
+            else resolve(producto);
+          }
+        );
+      });
+    },
+    eliminarAmbitoEstatal: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        AmbitoEstatals.findOneAndDelete({ _id: id }, error => {
+          if (error) rejects(error);
+          else resolve("Registro eliminado correctamente");
+        });
+      });
+    },
+
+    //Mutations de Impuestos
+    crearImpuesto: (root, { input }) => {
+      const nuevoImpuesto = new Impuestos({
+        nombre: input.nombre,
+        descripcion: input.descripcion
+      });
+      nuevoImpuesto.id = nuevoImpuesto._id;
+
+      return new Promise((resolve, object) => {
+        nuevoImpuesto.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoImpuesto);
+        });
+      });
+    },
+    actualizarImpuesto: (root, { input }) => {
+      return new Promise((resolve, object) => {
+        Impuestos.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (error, producto) => {
+            if (error) rejects(error);
+            else resolve(producto);
+          }
+        );
+      });
+    },
+    eliminarImpuesto: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Impuestos.findOneAndDelete({ _id: id }, error => {
+          if (error) rejects(error);
+          else resolve("Registro eliminado correctamente");
+        });
+      });
+    },
+
+    //Mutations de Contabilidads
+    crearContabilidad: (root, { input }) => {
+      const nuevoContabilidad = new Contabilidads({
+        nombre: input.nombre,
+        descripcion: input.descripcion
+      });
+      nuevoContabilidad.id = nuevoContabilidad._id;
+
+      return new Promise((resolve, object) => {
+        nuevoContabilidad.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoContabilidad);
+        });
+      });
+    },
+    actualizarContabilidad: (root, { input }) => {
+      return new Promise((resolve, object) => {
+        Contabilidads.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (error, producto) => {
+            if (error) rejects(error);
+            else resolve(producto);
+          }
+        );
+      });
+    },
+    eliminarContabilidad: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Contabilidads.findOneAndDelete({ _id: id }, error => {
+          if (error) rejects(error);
+          else resolve("Registro eliminado correctamente");
+        });
+      });
+    },
+
+    //Mutations de Tendencias
+    crearTendencia: (root, { input }) => {
+      const nuevoTendencia = new Tendencias({
+        nombre: input.nombre,
+        descripcion: input.descripcion
+      });
+      nuevoTendencia.id = nuevoTendencia._id;
+
+      return new Promise((resolve, object) => {
+        nuevoTendencia.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoTendencia);
+        });
+      });
+    },
+    actualizarTendencia: (root, { input }) => {
+      return new Promise((resolve, object) => {
+        Tendencias.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (error, producto) => {
+            if (error) rejects(error);
+            else resolve(producto);
+          }
+        );
+      });
+    },
+    eliminarTendencia: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Tendencias.findOneAndDelete({ _id: id }, error => {
+          if (error) rejects(error);
+          else resolve("Registro eliminado correctamente");
+        });
+      });
+    },
+
+    //Mutations de Comercializacions
+    crearComercializacion: (root, { input }) => {
+      const nuevoComercializacion = new Comercializacions({
+        nombre: input.nombre,
+        descripcion: input.descripcion
+      });
+      nuevoComercializacion.id = nuevoComercializacion._id;
+
+      return new Promise((resolve, object) => {
+        nuevoComercializacion.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoComercializacion);
+        });
+      });
+    },
+    actualizarComercializacion: (root, { input }) => {
+      return new Promise((resolve, object) => {
+        Comercializacions.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (error, producto) => {
+            if (error) rejects(error);
+            else resolve(producto);
+          }
+        );
+      });
+    },
+    eliminarComercializacion: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Comercializacions.findOneAndDelete({ _id: id }, error => {
+          if (error) rejects(error);
+          else resolve("Registro eliminado correctamente");
+        });
+      });
+    },
+
+    //Mutations de Departamentos
+    crearDepartamento: (root, { input }) => {
+      const nuevoDepartamento = new Departamentos({
+        nombre: input.nombre,
+        descripcion: input.descripcion
+      });
+      nuevoDepartamento.id = nuevoDepartamento._id;
+
+      return new Promise((resolve, object) => {
+        nuevoDepartamento.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoDepartamento);
+        });
+      });
+    },
+    actualizarDepartamento: (root, { input }) => {
+      return new Promise((resolve, object) => {
+        Departamentos.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true },
+          (error, producto) => {
+            if (error) rejects(error);
+            else resolve(producto);
+          }
+        );
+      });
+    },
+    eliminarDepartamento: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Departamentos.findOneAndDelete({ _id: id }, error => {
+          if (error) rejects(error);
+          else resolve("Registro eliminado correctamente");
+        });
+      });
     }
-  }
+
+    // //Mutations de lols
+    // crearlol: (root, { input }) => {
+    //   const nuevolol = new lols({
+    //     nombre: input.nombre,
+    //     descripcion: input.descripcion
+    //   });
+    //   nuevolol.id = nuevolol._id;
+
+    //   return new Promise((resolve, object) => {
+    //     nuevolol.save(error => {
+    //       if (error) rejects(error);
+    //       else resolve(nuevolol);
+    //     });
+    //   });
+    // },
+    // actualizarlol: (root, { input }) => {
+    //   return new Promise((resolve, object) => {
+    //     lols.findOneAndUpdate(
+    //       { _id: input.id },
+    //       input,
+    //       { new: true },
+    //       (error, producto) => {
+    //         if (error) rejects(error);
+    //         else resolve(producto);
+    //       }
+    //     );
+    //   });
+    // },
+    // eliminarlol: (root, { id }) => {
+    //   return new Promise((resolve, object) => {
+    //     lols.findOneAndDelete({ _id: id }, error => {
+    //       if (error) rejects(error);
+    //       else resolve("Registro eliminado correctamente");
+    //     });
+    //   });
+    // },
+  } //Cierre Mutation
 };

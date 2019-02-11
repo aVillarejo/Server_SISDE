@@ -9,7 +9,7 @@
 - usuario
 - password
 
-### [x] 5.2. Catalogo “Registro de Usuarios” (CRUD)
+### - [x] 5.2. Catalogo “Registro de Usuarios” (CRUD)
 
 - nombre
 - usuario

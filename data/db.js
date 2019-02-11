@@ -20,10 +20,25 @@ const girosSchema = new mongoose.Schema({
   descripcion: String
 });
 
+//Definir schema de Giros
+const formaJuridicasSchema = new mongoose.Schema({
+  nombre: String,
+  descripcion: String
+});
+
+//Definir schema de Grado
+const gradosSchema = new mongoose.Schema({
+  nombre: String,
+  descripcion: String
+});
+
 //Modelo de Usuarios
 const Usuarios = mongoose.model("usuarios", usuariosSchema);
-
 //Modelo de Giros
 const Giros = mongoose.model("giros", girosSchema);
+//Modelo de Formas Juridica
+const FormaJuridicas = mongoose.model("formaJuridicas", formaJuridicasSchema);
+//Modelo de Grados
+const Grados = mongoose.model("grados",gradosSchema);
 
-export { Usuarios, Giros };
+export { Usuarios, Giros, FormaJuridicas,Grados };

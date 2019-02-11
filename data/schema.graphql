@@ -73,12 +73,12 @@ input AmbitoEstatalInput {
 }
 
 # Impuestos
-type Impuestos {
+type Impuesto {
   id: ID
   nombre: String!
   descripcion: String!
 }
-input ImpuestosInput {
+input ImpuestoInput {
   id: ID
   nombre: String!
   descripcion: String!
@@ -97,12 +97,12 @@ input ContabilidadInput {
 }
 
 # Tendencias
-type Tendencias {
+type Tendencia {
   id: ID
   nombre: String!
   descripcion: String!
 }
-input TendenciasInput {
+input TendenciaInput {
   id: ID
   nombre: String!
   descripcion: String!
@@ -121,12 +121,12 @@ input ComercializacionInput {
 }
 
 # Departamentos
-type Departamentos {
+type Departamento {
   id: ID
   nombre: String!
   descripcion: String!
 }
-input DepartamentosInput {
+input DepartamentoInput {
   id: ID
   nombre: String!
   descripcion: String!
@@ -181,6 +181,44 @@ type Query {
   getGiros(limite: Int, offset: Int): [Giro]
   getGiro(id: ID!): Giro
   totalGiros: String
+  # FormaJuridica
+  getFormaJuridicas(limite: Int, offset: Int): [FormaJuridica]
+  getFormaJuridica(id: ID!): FormaJuridica
+  totalFormaJuridicas: String
+  # Grado
+  getGrados(limite: Int, offset: Int): [Grado]
+  getGrado(id: ID!): Grado
+  totalGrados: String
+  # AmbitoEstatal
+  getAmbitoEstatals(limite: Int, offset: Int): [AmbitoEstatal]
+  getAmbitoEstatal(id: ID!): AmbitoEstatal
+  totalAmbitoEstatals: String
+  # Impuesto
+  getImpuestos(limite: Int, offset: Int): [Impuesto]
+  getImpuesto(id: ID!): Impuesto
+  totalImpuestos: String
+  # Contabilidad
+  getContabilidads(limite: Int, offset: Int): [Contabilidad]
+  getContabilidad(id: ID!): Contabilidad
+  totalContabilidads: String
+  # Tendencia
+  getTendencias(limite: Int, offset: Int): [Tendencia]
+  getTendencia(id: ID!): Tendencia
+  totalTendencias: String
+  # Comercializacion
+  getComercializacions(limite: Int, offset: Int): [Comercializacion]
+  getComercializacion(id: ID!): Comercializacion
+  totalComercializacions: String
+  # Departamento
+  getDepartamentos(limite: Int, offset: Int): [Departamento]
+  getDepartamento(id: ID!): Departamento
+  totalDepartamentos: String
+  # mmm
+  # getmmms(limite: Int, offset: Int): [mmm]
+  # getmmm(id: ID!): mmm
+  # totalmmms: String
+
+  
 }
 
 type Mutation {
@@ -195,47 +233,47 @@ type Mutation {
   eliminarGiro(id: ID!): String
 
   # FormaJuridica
-  crearFormaJuridica(input: FormaJuridicaInput): Giro
-  actualizarFormaJuridica(input: FormaJuridicaInput): Giro
+  crearFormaJuridica(input: FormaJuridicaInput): FormaJuridica
+  actualizarFormaJuridica(input: FormaJuridicaInput): FormaJuridica
   eliminarFormaJuridica(id: ID!): String
 
   # Grado
-  crearGrado(input: GradoInput): Giro
-  actualizarGrado(input: GradoInput): Giro
+  crearGrado(input: GradoInput): Grado
+  actualizarGrado(input: GradoInput): Grado
   eliminarGrado(id: ID!): String
 
   # AmbitoEstatal
-  crearAmbitoEstatal(input: AmbitoEstatalInput): Giro
-  actualizarAmbitoEstatal(input: AmbitoEstatalInput): Giro
+  crearAmbitoEstatal(input: AmbitoEstatalInput): AmbitoEstatal
+  actualizarAmbitoEstatal(input: AmbitoEstatalInput): AmbitoEstatal
   eliminarAmbitoEstatal(id: ID!): String
 
   # Impuestos
-  crearImpuestos(input: ImpuestosInput): Giro
-  actualizarImpuestos(input: ImpuestosInput): Giro
-  eliminarImpuestos(id: ID!): String
+  crearImpuesto(input: ImpuestoInput): Impuesto
+  actualizarImpuesto(input: ImpuestoInput): Impuesto
+  eliminarImpuesto(id: ID!): String
 
   # Contabilidad
-  crearContabilidad(input: ContabilidadInput): Giro
-  actualizarContabilidad(input: ContabilidadInput): Giro
+  crearContabilidad(input: ContabilidadInput): Contabilidad
+  actualizarContabilidad(input: ContabilidadInput): Contabilidad
   eliminarContabilidad(id: ID!): String
 
   # Tendencias
-  crearTendencias(input: TendenciasInput): Giro
-  actualizarTendencias(input: TendenciasInput): Giro
-  eliminarTendencias(id: ID!): String
+  crearTendencia(input: TendenciaInput): Tendencia
+  actualizarTendencia(input: TendenciaInput): Tendencia
+  eliminarTendencia(id: ID!): String
 
   # Comercializacion
-  crearComercializacion(input: ComercializacionInput): Giro
-  actualizarComercializacion(input: ComercializacionInput): Giro
+  crearComercializacion(input: ComercializacionInput): Comercializacion
+  actualizarComercializacion(input: ComercializacionInput): Comercializacion
   eliminarComercializacion(id: ID!): String
 
   # Departamentos
-  crearDepartamentos(input: DepartamentosInput): Giro
-  actualizarDepartamentos(input: DepartamentosInput): Giro
-  eliminarDepartamentos(id: ID!): String
+  crearDepartamento(input: DepartamentoInput): Departamento
+  actualizarDepartamento(input: DepartamentoInput): Departamento
+  eliminarDepartamento(id: ID!): String
 
   # stm
-  # crearstm(input: stmInput): Giro
-  # actualizarstm(input: stmInput): Giro
+  # crearstm(input: stmInput): stm
+  # actualizarstm(input: stmInput): stm
   # eliminarstm(id: ID!): String
 }
