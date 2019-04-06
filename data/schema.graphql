@@ -36,7 +36,7 @@ input GiroInput {
   descripcion: String!
 }
 
-# Forma Juridica
+# Formas Juridicas
 type FormaJuridica {
   id: ID
   nombre: String!
@@ -181,18 +181,18 @@ type Query {
   getGiros(limite: Int, offset: Int): [Giro]
   getGiro(id: ID!): Giro
   totalGiros: String
-  # FormaJuridica
-  getFormaJuridicas(limite: Int, offset: Int): [FormaJuridica]
+  # Formas Juridicas
+  getFormasJuridicas(limite: Int, offset: Int): [FormaJuridica]
   getFormaJuridica(id: ID!): FormaJuridica
-  totalFormaJuridicas: String
+  totalFormasJuridicas: String
   # Grado
   getGrados(limite: Int, offset: Int): [Grado]
   getGrado(id: ID!): Grado
   totalGrados: String
   # AmbitoEstatal
-  getAmbitoEstatals(limite: Int, offset: Int): [AmbitoEstatal]
+  getAmbitoEstatales(limite: Int, offset: Int): [AmbitoEstatal]
   getAmbitoEstatal(id: ID!): AmbitoEstatal
-  totalAmbitoEstatals: String
+  totalAmbitoEstatal: String
   # Impuesto
   getImpuestos(limite: Int, offset: Int): [Impuesto]
   getImpuesto(id: ID!): Impuesto
@@ -217,8 +217,6 @@ type Query {
   # getmmms(limite: Int, offset: Int): [mmm]
   # getmmm(id: ID!): mmm
   # totalmmms: String
-
-  
 }
 
 type Mutation {

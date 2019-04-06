@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
-
-mongoose.connect("mongodb://localhost/SISDE", { useNewUrlParser: true });
+const URI =
+  "mongodb+srv://AdminAV:soporte123$@clusterav-qx4cd.mongodb.net/SISDE?retryWrites=true";
+const local = "mongodb://localhost/SISDE";
+mongoose.connect(URI, { useNewUrlParser: true });
 mongoose.set("findAndModify", false);
 
 //Definir schema de Usuarios
@@ -20,7 +22,7 @@ const girosSchema = new mongoose.Schema({
   descripcion: String
 });
 
-//Definir schema de Giros
+//Definir schema de Formas Juridicas
 const formaJuridicasSchema = new mongoose.Schema({
   nombre: String,
   descripcion: String
@@ -32,13 +34,20 @@ const gradosSchema = new mongoose.Schema({
   descripcion: String
 });
 
+const ambitoEstatalSchema = new mongoose.Schema({
+  nombre: String,
+  descripcion: String
+});
+
 //Modelo de Usuarios
 const Usuarios = mongoose.model("usuarios", usuariosSchema);
 //Modelo de Giros
 const Giros = mongoose.model("giros", girosSchema);
 //Modelo de Formas Juridica
-const FormaJuridicas = mongoose.model("formaJuridicas", formaJuridicasSchema);
+const FormasJuridicas = mongoose.model("formasJuridicas", formaJuridicasSchema);
 //Modelo de Grados
-const Grados = mongoose.model("grados",gradosSchema);
+const Grados = mongoose.model("grados", gradosSchema);
+//Modelo de AmbitoEstatal
+const AmbitoEstatal = mongoose.model("ambitoEstatal", ambitoEstatalSchema);
 
-export { Usuarios, Giros, FormaJuridicas,Grados };
+export { Usuarios, Giros, FormasJuridicas, Grados, AmbitoEstatal };

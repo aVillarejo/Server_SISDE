@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Usuarios, Giros, FormaJuridicas, Grados } from "./db";
+import { Usuarios, Giros, FormasJuridicas, Grados } from "./db";
 import { rejects } from "assert";
 
 export const resolvers = {
@@ -27,7 +27,7 @@ export const resolvers = {
       });
     },
 
-    //FormaJuridicas
+    //Giros
     getGiros: (root, { limite, offset }) => {
       return Giros.find({})
         .limit(limite)
@@ -50,23 +50,23 @@ export const resolvers = {
       });
     },
 
-    //FormaJuridicas
-    getFormaJuridicas: (root, { limite, offset }) => {
-      return FormaJuridicas.find({})
+    //Formas Juridicas
+    getFormasJuridicas: (root, { limite, offset }) => {
+      return FormasJuridicas.find({})
         .limit(limite)
         .skip(offset);
     },
     getFormaJuridica: (root, { id }) => {
       return new Promise((resolve, object) => {
-        FormaJuridicas.findById({ _id: id }, (error, producto) => {
+        FormasJuridicas.findById({ _id: id }, (error, producto) => {
           if (error) rejects(error);
           else resolve(producto);
         });
       });
     },
-    totalFormaJuridicas: root => {
+    totalFormasJuridicas: root => {
       return new Promise((resolve, object) => {
-        FormaJuridicas.countDocuments({}, (error, count) => {
+        FormasJuridicas.countDocuments({}, (error, count) => {
           if (error) rejects(error);
           else resolve(count);
         });
@@ -75,7 +75,48 @@ export const resolvers = {
 
     // Grados
     getGrados: (root, { limite, offset }) => {
-      return Grados.find({});
+      return Grados.find({})
+        .limit(limite)
+        .skip(offset);
+    },
+    getGrado: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Grados.findById({ _id: id }, (error, producto) => {
+          if (error) rejects(error);
+          else resolve(producto);
+        });
+      });
+    },
+    totalGrados: root => {
+      return new Promise((resolve, object) => {
+        Grados.countDocuments({}, (error, count) => {
+          if (error) rejects(error);
+          else resolve(count);
+        });
+      });
+    },
+
+    //FormaJuridicas
+    getAmbitoEstatales: (root, { limite, offset }) => {
+      return AmbitoEstatal.find({})
+        .limit(limite)
+        .skip(offset);
+    },
+    getAmbitoEstatal: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        AmbitoEstatal.findById({ _id: id }, (error, producto) => {
+          if (error) rejects(error);
+          else resolve(producto);
+        });
+      });
+    },
+    totalAmbitoEstatal: root => {
+      return new Promise((resolve, object) => {
+        AmbitoEstatal.countDocuments({}, (error, count) => {
+          if (error) rejects(error);
+          else resolve(count);
+        });
+      });
     }
   },
   Mutation: {
@@ -159,7 +200,7 @@ export const resolvers = {
 
     //Mutations de FormaJuridicas
     crearFormaJuridica: (root, { input }) => {
-      const nuevoFormaJuridica = new FormaJuridicas({
+      const nuevoFormaJuridica = new FormasJuridicas({
         nombre: input.nombre,
         descripcion: input.descripcion
       });
@@ -174,20 +215,20 @@ export const resolvers = {
     },
     actualizarFormaJuridica: (root, { input }) => {
       return new Promise((resolve, object) => {
-        FormaJuridicas.findOneAndUpdate(
+        FormasJuridicas.findOneAndUpdate(
           { _id: input.id },
           input,
           { new: true },
-          (error, producto) => {
+          (error, element) => {
             if (error) rejects(error);
-            else resolve(producto);
+            else resolve(element);
           }
         );
       });
     },
     eliminarFormaJuridica: (root, { id }) => {
       return new Promise((resolve, object) => {
-        FormaJuridicas.findOneAndDelete({ _id: id }, error => {
+        FormasJuridicas.findOneAndDelete({ _id: id }, error => {
           if (error) rejects(error);
           else resolve("Registro eliminado correctamente");
         });

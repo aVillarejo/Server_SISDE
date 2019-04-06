@@ -1,5 +1,4 @@
 import express from 'express';
-
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs } from './data/schema';
 import { resolvers } from './data/resolvers';
@@ -17,5 +16,9 @@ const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });
 
 //Ejecucion del Servidor
-const port = 9000;
+const port = 4000;
 app.listen({ port }, () => console.log(`El servidor esta corriendo - http://localhost:${port}${server.graphqlPath}`));
+//test
+// app.get('*',(re,res)=>{
+//   res.sendFile(path.resilve(__dirname,'public','index.html'));
+// })
