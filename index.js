@@ -16,8 +16,16 @@ const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });
 
 //Ejecucion del Servidor
-const port = 4000;
-app.listen({ port }, () => console.log(`El servidor esta corriendo - http://localhost:${port}${server.graphqlPath}`));
+//const port = 4000;rs
+//app.listen({ port }, () => console.log(`El servidor esta corriendo - http://localhost:${port}${server.graphqlPath}`));
+
+const port = process.env.PORT || 4000 
+
+app.listen({ port }).then(({ url }) => {
+    console.log(`🚀 Server ready at ${url}`)
+});
+
+
 //test
 // app.get('*',(re,res)=>{
 //   res.sendFile(path.resilve(__dirname,'public','index.html'));
